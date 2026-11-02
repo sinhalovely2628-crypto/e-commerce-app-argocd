@@ -46,8 +46,9 @@ yq -i '(.spec.template.spec.containers[] |
 select(.name == strenv(CONTAINER_NAME)).image) = strenv(NEW_IMAGE)' "$MANIFEST"
 
 echo "Updated image:"
+CONTAINER_NAME="$CONTAINER_NAME" \
 yq '.spec.template.spec.containers[] |
-select(.name == "ecom-web").image' "$MANIFEST"
+select(.name == strenv(CONTAINER_NAME)).image' "$MANIFEST"
 
 if git diff --quiet -- "$MANIFEST"; then
     echo "No changes detected."
