@@ -13,7 +13,8 @@ fi
 MANIFEST="$1"
 CONTAINER_NAME="$2"
 NEW_IMAGE="$3"
-BRANCH="${GIT_BRANCH:-main}"
+BRANCH="${BRANCH_NAME:-${GIT_BRANCH:-main}}"
+BRANCH="${BRANCH##*/}"
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
@@ -62,4 +63,4 @@ git commit -m "GitOps: update ${CONTAINER_NAME} image to ${NEW_IMAGE}"
 
 git push origin "HEAD:${BRANCH}"
 
-echo "SUCCESS: Updated manifest pushed to GitLab."
+echo "SUCCESS: Updated manifest pushed to GitHub."
