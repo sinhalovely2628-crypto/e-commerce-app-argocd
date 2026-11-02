@@ -60,7 +60,7 @@ git add -- "$MANIFEST"
 git config user.name "Jenkins GitOps"
 git config user.email "jenkins-gitops@example.invalid"
 
-git commit -m "GitOps: update ${CONTAINER_NAME} image to ${NEW_IMAGE}"
+git commit -m "GitOps: update ${CONTAINER_NAME} image to ${NEW_IMAGE}" -- "$MANIFEST"
 
 git push origin "HEAD:${BRANCH}"
 
